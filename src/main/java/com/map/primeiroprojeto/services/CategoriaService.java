@@ -31,30 +31,21 @@ public class CategoriaService {
 		return cat.orElseThrow(	() -> new ObjectNotFoundException(
 				"OPT 03: Objeto nao encontrado! Id: "+ id+" -  TIPO: "+ Categoria.class.getName() )  );
 		
-	
-		//versao do instrutor	
-		//return obj.orElseThrow(() -> new ObjectNotFoundException(
-		//"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
-
 		
 	}
 	
 	
-	
-	/*FIND -OPCAP 02 - COM Service / SEM Repository - */
-	/*------------------------------------------------------------
-	public Categoria buscar(List<Categoria> lst, Integer id) {		
-		for(Categoria categoriaLista: lst) {
-			if(categoriaLista.getId().equals(id)) {
-				return categoriaLista;
-			}
-		}
-		return null;	
-	}
-	------------------------------------------------------------*/
-	
+	//INSERT -----------------------------------------------------------------------------
+	//pra garantir que seja INSERT (metodo repo.save precisa saber q o ID é null
 	public Categoria insert(Categoria obj) {
-		obj.setId(null); //pra garantir memso que estamos inserindo e nao atualizando 
+		obj.setId(null); 
+		return repo.save(obj);
+	}
+	
+	//UPDATE ------------------------------------------------------------------------------
+	//pra garantir que seja UpdateT (metodo repo.save precisa saber q o ID NAO é null
+	public Categoria update(Categoria obj) {
+		buscar(obj.getId());
 		return repo.save(obj);
 	}
 	

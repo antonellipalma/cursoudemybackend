@@ -26,13 +26,15 @@ public class CategoriaResource {
 	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) throws ObjectNotFoundException {
+	public ResponseEntity<Categoria> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		
 		Categoria cat= servico.buscar(id);				
 		return ResponseEntity.ok().body(cat) ;
 			
 	}
 	
+	
+	//INSERIR --------------------------------------------------------------
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void>insert(@RequestBody Categoria obj){
 		obj=servico.insert(obj);
@@ -41,7 +43,14 @@ public class CategoriaResource {
 		
 	}
 	
-	
+	//ATUALIZAR -------------------------------------------------------------
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void>update(@RequestBody Categoria obj, @PathVariable Integer id){
+		obj.setId(id);
+		obj=servico.update(obj);
+		return ResponseEntity.noContent().build();
+		
+	}
 	
 	
 	
