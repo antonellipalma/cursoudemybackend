@@ -53,7 +53,10 @@ public class CategoriaService {
 	}
 	------------------------------------------------------------*/
 	
-	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null); //pra garantir memso que estamos inserindo e nao atualizando 
+		return repo.save(obj);
+	}
 	
 	
 }

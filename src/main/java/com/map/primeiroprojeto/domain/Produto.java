@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -29,7 +28,7 @@ public class Produto implements Serializable{
 	private  String  nome;
 	private  Double   preco;
 	
-	@JsonBackReference //para nao fazer referencia em looping -> 
+	@JsonIgnore //para nao fazer referencia em looping -> 
 	@ManyToMany
 	@JoinTable( name="PRODUTO_CATEGORIA",
 			joinColumns =@JoinColumn(name="produto_id"),inverseJoinColumns=@JoinColumn(name="categoria_id")
