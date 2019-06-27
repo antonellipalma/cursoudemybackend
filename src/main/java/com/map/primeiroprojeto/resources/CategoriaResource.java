@@ -2,6 +2,8 @@ package com.map.primeiroprojeto.resources;
 
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.map.primeiroprojeto.domain.Categoria;
+import com.map.primeiroprojeto.dto.CategoriaDTO;
 import com.map.primeiroprojeto.services.CategoriaService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -24,7 +27,7 @@ public class CategoriaResource {
 	@Autowired
 	private CategoriaService servico;
 	
-	
+	//FIND por ID -------------------------------------------------------
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		
@@ -32,6 +35,15 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(cat) ;
 			
 	}
+	
+	//FIND ALL ------------------------------------------------------------
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>>findAll(){
+		List<Categoria> lst= servico.buscarTodos();
+		List<CategoriaDTO> lstDTO= lst.stream().map(obj->new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok(lstDTO);
+	}
+	
 	
 	
 	//INSERIR --------------------------------------------------------------

@@ -1,5 +1,6 @@
 package com.map.primeiroprojeto.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,19 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	 
+	//BUSCAR por ID -------------------------------------------------------------------- 
 	public Categoria buscar(Integer id) {		
 		Optional<Categoria> cat =repo.findById(id);				
 		return cat.orElseThrow(	() -> new ObjectNotFoundException(
 				"OPT 03: Objeto nao encontrado! Id: "+ id+" -  TIPO: "+ Categoria.class.getName() )  );
 		
 		
+	}
+	
+	
+	//BUSCAR TODOS--------------------------------------------------------------------
+	public List<Categoria>buscarTodos(){
+		return repo.findAll();
 	}
 	
 	
