@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.map.primeiroprojeto.services.exception.DataIntegrityException;
 import com.map.primeiroprojeto.services.exception.ObjectNotFoundException;
 
 
@@ -16,10 +17,17 @@ public class ResourceExceptionHandler {
 	
 	
 	@ExceptionHandler(ObjectNotFoundException.class)
-	public ResponseEntity<ErroPadraoAplicacao> ObjetoNaoEncontrado( ObjectNotFoundException e, HttpServletRequest request){
-			ErroPadraoAplicacao err= new ErroPadraoAplicacao(HttpStatus.NOT_FOUND.value(),e.getMessage(),System.currentTimeMillis());
-			//return ResponseEntity.ok().body(err);
+	public ResponseEntity<ErroPadraoAplicacao> objetoNaoEncontrado( ObjectNotFoundException e, HttpServletRequest request){
+			ErroPadraoAplicacao err= new ErroPadraoAplicacao(HttpStatus.NOT_FOUND.value(),e.getMessage(),System.currentTimeMillis());			
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 	}
 		
+	
+	@ExceptionHandler(DataIntegrityException.class)
+	public ResponseEntity<ErroPadraoAplicacao> dataIntegrity( DataIntegrityException e, HttpServletRequest request){
+			ErroPadraoAplicacao err= new ErroPadraoAplicacao(HttpStatus.BAD_REQUEST.value(),e.getMessage(),System.currentTimeMillis());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+	}
+		
+	
 }
