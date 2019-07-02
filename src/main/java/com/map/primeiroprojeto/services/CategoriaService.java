@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.map.primeiroprojeto.domain.Categoria;
+import com.map.primeiroprojeto.dto.CategoriaDTO;
 import com.map.primeiroprojeto.repositories.CategoriaRepository;
 import com.map.primeiroprojeto.services.exception.DataIntegrityException;
 import com.map.primeiroprojeto.services.exception.ObjectNotFoundException;
@@ -74,4 +75,16 @@ public class CategoriaService {
 			throw new DataIntegrityException("NAO E POSSIVEL EXCLUIR UMA CATEGORIA QUE POSSUI PRODUTOS");
 		}
 	}
+	
+	
+	//TRANSFORMA DTO em OBJ ----------------------------------------------------------------------
+	public Categoria transformaDtoEmObj(CategoriaDTO dto) {
+		Categoria categoria= new Categoria(dto.getId(),dto.getNome());
+		return categoria;
+		
+		
+	}
+	
+	
+	
 }
