@@ -61,9 +61,13 @@ public class CategoriaService {
 	//UPDATE ------------------------------------------------------------------------------
 	//pra garantir que seja UpdateT (metodo repo.save precisa saber q o ID NAO é null
 	public Categoria update(Categoria obj) {
-		buscar(obj.getId());
-		return repo.save(obj);
+		Categoria newObj =buscar(obj.getId()); 
+		newObj.setNome(obj.getNome());
+		return repo.save(newObj);
 	}
+	
+	
+	
 	
 	//DELETE ------------------------------------------------------------------------------
 	public void delete(Integer id) {
