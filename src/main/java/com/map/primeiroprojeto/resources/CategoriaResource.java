@@ -48,24 +48,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok(lstDTO);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -106,73 +89,14 @@ public class CategoriaResource {
 		
 	}
 	
+	
+	//DELETAR --------------------------------------------------------------
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void>delete(@PathVariable Integer id){
 		servico.delete(id);
 		return ResponseEntity.noContent().build();
 		
 	}
-	
-	
-	
-	
-	
-	/*--------------------------------------------------
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Categoria> listar() {
-		Categoria cat1= new Categoria(1,"Informatica");
-		Categoria cat2= new Categoria(2,"Escritorio");
-		
-		List<Categoria> lst= new ArrayList();
-		lst.add(cat1);
-		lst.add(cat2);
-				
-		return lst ;			
-	}	
-	--------------------------------------------------*/
-	
-	
-	/*FIND -OPCAP 01 -SIMPLES SEM Service/Repository - na mao*/
-	/*--------------------------------------------------------
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public Categoria find(@PathVariable Integer id) {
-		Categoria cat1= new Categoria(1,"Informatica");
-		Categoria cat2= new Categoria(2,"Escritorio");
-		
-		List<Categoria> lst= new ArrayList();
-		lst.add(cat1);
-		lst.add(cat2);
-		
-		for(Categoria categoriaLista: lst) {
-			if(categoriaLista.getId().equals(id)) {
-				return categoriaLista;
-			}
-		}
-				
-		return null ;			
-	}
-	---------------------------------------------------------*/
-	
-	
-	
-	/*FIND -OPCAP 02 -SIMPLES COM Service / SEM Repository*/
-	/*---------------------------------------------------------------
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public Categoria find(@PathVariable Integer id) {
-		Categoria cat1= new Categoria(1,"Informatica");
-		Categoria cat2= new Categoria(2,"Escritorio");
-	
-		List<Categoria> lst= new ArrayList();
-		lst.add(cat1);
-		lst.add(cat2);
-	
-		servico.buscar(lst, id);				
-		return servico.buscar(lst, id) ;
-			
-	}
-	---------------------------------------------------------------*/
-	
-	
 	
 	
 	 
